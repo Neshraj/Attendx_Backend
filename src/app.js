@@ -14,6 +14,17 @@ import { notFound, errorHandler } from './middleware/error.js';
 
 const app = express();
 
+app.get("/", (req, res) => {
+  res.status(200).json({
+    name: "AttendX",
+    description: "Multi-tenant attendance management platform",
+    service: "Backend API",
+    status: "operational",
+    version: "1.0.0",
+    message: "AttendX API is running successfully."
+  });
+});
+
 const allowedOrigins = (process.env.CLIENT_URL || 'http://localhost:5173').split(',').map(x => x.trim()).filter(Boolean);
 app.use(helmet());
 app.use(cors({ origin: allowedOrigins, credentials: true }));
